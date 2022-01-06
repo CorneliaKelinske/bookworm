@@ -14,6 +14,12 @@ defmodule BookwormWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "graphiql" do
+    forward "/", Absinthe.Plug.GraphiQL,
+    schema: BookwormWeb.Schema,
+    interface: :simple
+  end
+
   scope "/", BookwormWeb do
     pipe_through :browser
 
