@@ -35,7 +35,12 @@ defmodule Bookworm.ContentTest do
 
     test "update_author/2 with valid data updates the author" do
       author = author_fixture()
-      update_attrs = %{bio: "some updated bio", birthplace: "some updated birthplace", name: "some updated name"}
+
+      update_attrs = %{
+        bio: "some updated bio",
+        birthplace: "some updated birthplace",
+        name: "some updated name"
+      }
 
       assert {:ok, %Author{} = author} = Content.update_author(author, update_attrs)
       assert author.bio == "some updated bio"

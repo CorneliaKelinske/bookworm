@@ -16,8 +16,8 @@ defmodule BookwormWeb.Router do
 
   scope "graphiql" do
     forward "/", Absinthe.Plug.GraphiQL,
-    schema: BookwormWeb.Schema,
-    interface: :simple
+      schema: BookwormWeb.Schema,
+      interface: :simple
   end
 
   scope "/", BookwormWeb do

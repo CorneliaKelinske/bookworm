@@ -36,7 +36,11 @@ defmodule Bookworm.Content do
 
   """
   def get_author!(id) do
-   Repo.get!(Author, id) |> Repo.preload(:books)
+    Repo.get!(Author, id) |> Repo.preload(:books)
+  end
+
+  def get_author_by_name(name) do
+    Repo.get_by(Author, name: name) |> Repo.preload(:books)
   end
 
   @doc """
@@ -134,7 +138,7 @@ defmodule Bookworm.Content do
 
   """
   def get_book!(id) do
-     Repo.get!(Book, id) |> Repo.preload(:author)
+    Repo.get!(Book, id) |> Repo.preload(:author)
   end
 
   @doc """

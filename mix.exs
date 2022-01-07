@@ -52,7 +52,6 @@ defmodule Bookworm.MixProject do
       {:absinthe, "~> 1.6"},
       {:absinthe_plug, "~> 1.5"},
       {:absinthe_phoenix, "~> 2.0.0"}
-
     ]
   end
 
