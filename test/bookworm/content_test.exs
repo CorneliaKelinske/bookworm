@@ -121,4 +121,110 @@ defmodule Bookworm.ContentTest do
       assert %Ecto.Changeset{} = Content.change_book(book)
     end
   end
+
+  describe "genres" do
+    alias Bookworm.Content.Genre
+
+    import Bookworm.ContentFixtures
+
+    @invalid_attrs %{name: nil}
+
+    test "list_genres/0 returns all genres" do
+      genre = genre_fixture()
+      assert Content.list_genres() == [genre]
+    end
+
+    test "get_genre!/1 returns the genre with given id" do
+      genre = genre_fixture()
+      assert Content.get_genre!(genre.id) == genre
+    end
+
+    test "create_genre/1 with valid data creates a genre" do
+      valid_attrs = %{name: "some name"}
+
+      assert {:ok, %Genre{} = genre} = Content.create_genre(valid_attrs)
+      assert genre.name == "some name"
+    end
+
+    test "create_genre/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Content.create_genre(@invalid_attrs)
+    end
+
+    test "update_genre/2 with valid data updates the genre" do
+      genre = genre_fixture()
+      update_attrs = %{name: "some updated name"}
+
+      assert {:ok, %Genre{} = genre} = Content.update_genre(genre, update_attrs)
+      assert genre.name == "some updated name"
+    end
+
+    test "update_genre/2 with invalid data returns error changeset" do
+      genre = genre_fixture()
+      assert {:error, %Ecto.Changeset{}} = Content.update_genre(genre, @invalid_attrs)
+      assert genre == Content.get_genre!(genre.id)
+    end
+
+    test "delete_genre/1 deletes the genre" do
+      genre = genre_fixture()
+      assert {:ok, %Genre{}} = Content.delete_genre(genre)
+      assert_raise Ecto.NoResultsError, fn -> Content.get_genre!(genre.id) end
+    end
+
+    test "change_genre/1 returns a genre changeset" do
+      genre = genre_fixture()
+      assert %Ecto.Changeset{} = Content.change_genre(genre)
+    end
+  end
+
+  describe "book_genres" do
+    alias Bookworm.Content.BookGenre
+
+    import Bookworm.ContentFixtures
+
+    @invalid_attrs %{}
+
+    test "list_book_genres/0 returns all book_genres" do
+      book_genre = book_genre_fixture()
+      assert Content.list_book_genres() == [book_genre]
+    end
+
+    test "get_book_genre!/1 returns the book_genre with given id" do
+      book_genre = book_genre_fixture()
+      assert Content.get_book_genre!(book_genre.id) == book_genre
+    end
+
+    test "create_book_genre/1 with valid data creates a book_genre" do
+      valid_attrs = %{}
+
+      assert {:ok, %BookGenre{} = book_genre} = Content.create_book_genre(valid_attrs)
+    end
+
+    test "create_book_genre/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Content.create_book_genre(@invalid_attrs)
+    end
+
+    test "update_book_genre/2 with valid data updates the book_genre" do
+      book_genre = book_genre_fixture()
+      update_attrs = %{}
+
+      assert {:ok, %BookGenre{} = book_genre} = Content.update_book_genre(book_genre, update_attrs)
+    end
+
+    test "update_book_genre/2 with invalid data returns error changeset" do
+      book_genre = book_genre_fixture()
+      assert {:error, %Ecto.Changeset{}} = Content.update_book_genre(book_genre, @invalid_attrs)
+      assert book_genre == Content.get_book_genre!(book_genre.id)
+    end
+
+    test "delete_book_genre/1 deletes the book_genre" do
+      book_genre = book_genre_fixture()
+      assert {:ok, %BookGenre{}} = Content.delete_book_genre(book_genre)
+      assert_raise Ecto.NoResultsError, fn -> Content.get_book_genre!(book_genre.id) end
+    end
+
+    test "change_book_genre/1 returns a book_genre changeset" do
+      book_genre = book_genre_fixture()
+      assert %Ecto.Changeset{} = Content.change_book_genre(book_genre)
+    end
+  end
 end
