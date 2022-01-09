@@ -3,7 +3,6 @@ defmodule Bookworm.Content.BookGenre do
   import Ecto.Changeset
 
   schema "book_genres" do
-
     field :book_id, :id
     field :genre_id, :id
 

@@ -13,7 +13,6 @@ defmodule Bookworm.Content do
     |> Repo.preload(books: [:genres])
   end
 
-
   def get_author!(id) do
     Repo.get!(Author, id)
     |> Repo.preload(books: [:genres])
@@ -21,9 +20,8 @@ defmodule Bookworm.Content do
 
   def get_author_by_name(name) do
     Repo.get_by(Author, name: name)
-   |> Repo.preload(books: [:genres])
+    |> Repo.preload(books: [:genres])
   end
-
 
   def create_author(attrs \\ %{}) do
     %Author{}
@@ -31,18 +29,15 @@ defmodule Bookworm.Content do
     |> Repo.insert()
   end
 
-
   def update_author(%Author{} = author, attrs) do
     author
     |> Author.changeset(attrs)
     |> Repo.update()
   end
 
-
   def delete_author(%Author{} = author) do
     Repo.delete(author)
   end
-
 
   def change_author(%Author{} = author, attrs \\ %{}) do
     Author.changeset(author, attrs)
@@ -50,18 +45,15 @@ defmodule Bookworm.Content do
 
   alias Bookworm.Content.Book
 
-
   def list_books do
     Repo.all(Book)
     |> Repo.preload([:author, :genres])
   end
 
-
   def get_book!(id) do
     Repo.get!(Book, id)
     |> Repo.preload([:author, :genres])
   end
-
 
   def create_book(attrs \\ %{}) do
     %Book{}
@@ -69,18 +61,15 @@ defmodule Bookworm.Content do
     |> Repo.insert()
   end
 
-
   def update_book(%Book{} = book, attrs) do
     book
     |> Book.changeset(attrs)
     |> Repo.update()
   end
 
-
   def delete_book(%Book{} = book) do
     Repo.delete(book)
   end
-
 
   def change_book(%Book{} = book, attrs \\ %{}) do
     Book.changeset(book, attrs)
@@ -88,23 +77,20 @@ defmodule Bookworm.Content do
 
   alias Bookworm.Content.Genre
 
-
   def list_genres do
     Repo.all(Genre)
     |> Repo.preload(books: [:author])
   end
 
-
   def get_genre!(id) do
-   Repo.get!(Genre, id)
-   |> Repo.preload(books: [:author])
+    Repo.get!(Genre, id)
+    |> Repo.preload(books: [:author])
   end
 
   def get_genre_by_name(name) do
     Repo.get_by(Genre, name: name)
-   |> Repo.preload(books: [:author])
+    |> Repo.preload(books: [:author])
   end
-
 
   def create_genre(attrs \\ %{}) do
     %Genre{}
@@ -112,18 +98,15 @@ defmodule Bookworm.Content do
     |> Repo.insert()
   end
 
-
   def update_genre(%Genre{} = genre, attrs) do
     genre
     |> Genre.changeset(attrs)
     |> Repo.update()
   end
 
-
   def delete_genre(%Genre{} = genre) do
     Repo.delete(genre)
   end
-
 
   def change_genre(%Genre{} = genre, attrs \\ %{}) do
     Genre.changeset(genre, attrs)
@@ -131,14 +114,11 @@ defmodule Bookworm.Content do
 
   alias Bookworm.Content.BookGenre
 
-
   def list_book_genres do
     Repo.all(BookGenre)
   end
 
-
   def get_book_genre!(id), do: Repo.get!(BookGenre, id)
-
 
   def create_book_genre(attrs \\ %{}) do
     %BookGenre{}
@@ -146,18 +126,15 @@ defmodule Bookworm.Content do
     |> Repo.insert()
   end
 
-
   def update_book_genre(%BookGenre{} = book_genre, attrs) do
     book_genre
     |> BookGenre.changeset(attrs)
     |> Repo.update()
   end
 
-
   def delete_book_genre(%BookGenre{} = book_genre) do
     Repo.delete(book_genre)
   end
-
 
   def change_book_genre(%BookGenre{} = book_genre, attrs \\ %{}) do
     BookGenre.changeset(book_genre, attrs)

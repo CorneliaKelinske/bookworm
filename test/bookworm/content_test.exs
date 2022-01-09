@@ -207,7 +207,8 @@ defmodule Bookworm.ContentTest do
       book_genre = book_genre_fixture()
       update_attrs = %{}
 
-      assert {:ok, %BookGenre{} = book_genre} = Content.update_book_genre(book_genre, update_attrs)
+      assert {:ok, %BookGenre{} = book_genre} =
+               Content.update_book_genre(book_genre, update_attrs)
     end
 
     test "update_book_genre/2 with invalid data returns error changeset" do

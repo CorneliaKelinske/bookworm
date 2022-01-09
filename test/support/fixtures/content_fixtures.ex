@@ -55,9 +55,7 @@ defmodule Bookworm.ContentFixtures do
   def book_genre_fixture(attrs \\ %{}) do
     {:ok, book_genre} =
       attrs
-      |> Enum.into(%{
-
-      })
+      |> Enum.into(%{})
       |> Bookworm.Content.create_book_genre()
 
     book_genre
